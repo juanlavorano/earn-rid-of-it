@@ -1,12 +1,12 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import MyTextComponent from './MyTextComponent'
 
 styles = StyleSheet.create({
     container: {
         height: 277,
         width: 150,
-        margin: 15
+        margin: 10
 
     },
     img: {
@@ -22,8 +22,8 @@ export default function ProductCard({ name, price }) {
         <View style={styles.container}>
             <View style={styles.img}>
             </View>
-            <MyTextComponent style={{ marginTop: 10 }}>{name}</MyTextComponent>
-            <MyTextComponent style={{ marginTop: 10 }}>{price}</MyTextComponent>
+            <MyTextComponent style={{ marginTop: 5 }}>{name}</MyTextComponent>
+            <MyTextComponent style={{ marginTop: 5 }}>{price}</MyTextComponent>
         </View>
     )
 }

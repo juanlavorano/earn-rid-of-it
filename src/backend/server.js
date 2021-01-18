@@ -2,6 +2,7 @@ const express = require('express')
 const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
+const itemRoute = require('./routes/item')
 const cors = require('cors')
 
 const app = express();
@@ -27,6 +28,10 @@ app.get('/', (req, res) => {
 })
 // Register - Login
 app.use('/user', authRoute)
+
+// Items
+app.use('/item', itemRoute)
+
 
 // CONNECT TO PORT
 const PORT = process.env.PORT || 5000;

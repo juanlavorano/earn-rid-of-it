@@ -4,18 +4,23 @@ const { Schema } = mongoose;
 const itemSchema = new Schema({
     name: {
         type: String,
-        required: true
     },
     price: {
         type: Number,
-        required: true
     },
-    oldPrice: {
-        type: Number
-    },
-    type: {
+    description: {
         type: String
-    }
+    },
+    category: {
+        type: String,
+    },
+    seller: {
+        type: String,
+    },
+    // img: {
+    //     data: Buffer,
+    //     contentType: String,
+    // },
 
 })
 

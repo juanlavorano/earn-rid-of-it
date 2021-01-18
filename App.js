@@ -1,24 +1,24 @@
 import 'react-native-gesture-handler';
-import React, { useContext } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import {
-  Dimensions
+  Dimensions,
+  View
 } from 'react-native';
 import Landing from './src/components/Landing'
 import SignIn from './src/components/SignIn'
 import SignUp from './src/components/SignUp'
 import Home from './src/components/Home'
+import Sell from './src/components/Sell'
 import Profile from './src/components/Profile'
 import Favourites from './src/components/Favourites'
 import Search from './src/components/Search'
-import { AuthProvider, useAuth } from './src/components/AuthContext'
+import { useAuth } from './src/components/AuthContext'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 const Tab = createBottomTabNavigator()
-const LandingStack = createStackNavigator()
-
 function HomeTabs() {
   return (
     <Tab.Navigator
@@ -34,6 +34,8 @@ function HomeTabs() {
             iconName = 'person'
           } else if (route.name === 'Search') {
             iconName = 'search'
+          } else if (route.name === 'Sell') {
+            iconName = 'add-circle'
           }
 
           // You can return any component that you like here!
@@ -58,6 +60,10 @@ function HomeTabs() {
         component={Search}
       />
       <Tab.Screen
+        name="Sell"
+        component={Sell}
+      />
+      <Tab.Screen
         name="Favourites"
         component={Favourites}
         options={{ tabBarBadge: 2 }}
@@ -71,36 +77,52 @@ function HomeTabs() {
   )
 }
 
-const Stack = createStackNavigator();
-
-const App = () => {
+const LandingStack = createStackNavigator();
+function LandingScreens() {
   return (
-    <AuthProvider>
-      <NavigationContainer style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width }}>
-        <Stack.Navigator
-          screenOptions={{
-            gestureEnabeled: true,
-            gestureDirection: 'horizontal'
-          }}
-        >
-
-          <Stack.Screen
-            name="Landing"
-            component={Landing}
-          />
-          <Stack.Screen
-            name="Sign In"
-            component={SignIn}
-          />
-          <Stack.Screen
-            name="Sign Up"
-            component={SignUp}
-          />
-          <Stack.Screen name='Home' component={HomeTabs} />
-        </Stack.Navigator>
-      </NavigationContainer>
-    </AuthProvider>
+    <LandingStack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+    >
+      <LandingStack.Screen
+        name="Landing"
+        component={Landing}
+      />
+      <LandingStack.Screen
+        name="Sign In"
+        component={SignIn}
+      />
+      <LandingStack.Screen
+        name="Sign Up"
+        component={SignUp}
+      />
+    </LandingStack.Navigator >
   )
 }
+
+const Stack = createStackNavigator()
+const App = () => {
+  const { currentUser } = useAuth()
+  return (
+    <NavigationContainer style={{ height: Dimensions.get('window').height, width: Dimensions.get('window').width }}>
+      <Stack.Navigator
+        screenOptions={{
+          gestureEnabeled: true,
+          gestureDirection: 'horizontal'
+        }}
+      >
+        {!currentUser
+          ?
+          <Stack.Screen name='Landing' component={LandingScreens} />
+          :
+          <Stack.Screen name='Earn  Of It' component={HomeTabs} />
+        }
+      </Stack.Navigator>
+    </NavigationContainer>
+
+  )
+}
+
 
 export default App;

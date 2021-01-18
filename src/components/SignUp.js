@@ -54,7 +54,7 @@ export default function SignUp({ navigation }) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
-    const [currentUser, setCurrentUser] = useAuth()
+    const { currentUser, setCurrentUser } = useAuth()
 
     async function handlePress() {
         const user = {

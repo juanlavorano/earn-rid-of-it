@@ -20,7 +20,7 @@ const userSchema = new Schema({
         type: String,
         required: true,
         max: 1024
-    },
+    }
 })
 
 module.exports = mongoose.model('User', userSchema)

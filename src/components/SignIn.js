@@ -110,7 +110,7 @@ export default function SignIn({ navigation }) {
                         secureTextEntry={true} />
                     <Button buttonStyle={styles.button} title='Sign In' onPress={() => handlePress()} />
 
-                    <MyTextComponent>Forgot your password? Don't worry</MyTextComponent>
+                    < MyTextComponent > Forgot your password ? Don't worry</MyTextComponent>
                 </View>
             </View>
         </View>

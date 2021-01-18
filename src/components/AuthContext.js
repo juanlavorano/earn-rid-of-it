@@ -8,7 +8,7 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-    const [currentUser, setCurrentUser] = useState()
+    const [currentUser, setCurrentUser] = useState({})
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
@@ -16,21 +16,12 @@ export function AuthProvider({ children }) {
         setLoading(false)
     }, [])
 
-    function signUp() {
-
-    }
-
-    function logIn(email, password) {
-    }
-
     function logOut() {
     }
 
     const value = {
         currentUser,
         setCurrentUser,
-        signUp,
-        logIn,
         logOut
     }
 

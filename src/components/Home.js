@@ -26,14 +26,14 @@ export default function Home({ navigation }) {
     const { currentUser } = useAuth()
 
     const [products, setProducts] = useState([
-        { name: 'Shoes', price: '€25' },
-        { name: 'Shirt', price: '€10' },
-        { name: 'Pants', price: '€15' },
+        { name: 'Shoes', price: '€25', key: '1' },
+        { name: 'Shirt', price: '€10', key: '2' },
+        { name: 'Pants', price: '€15', key: '3' },
     ])
     const [saleProducts, setSaleProducts] = useState([
-        { name: 'Shoes', oldPrice: '€25', price: '€20' },
-        { name: 'Shirt', oldPrice: '€10', price: '€6' },
-        { name: 'Pants', oldPrice: '€15', price: '€10' },
+        { name: 'Shoes', oldPrice: '€25', price: '€20', key: '4' },
+        { name: 'Shirt', oldPrice: '€10', price: '€6', key: '5' },
+        { name: 'Pants', oldPrice: '€15', price: '€10', key: '6' },
     ])
 
     useEffect(() =>
@@ -45,7 +45,7 @@ export default function Home({ navigation }) {
             <View style={{ height: '100%' }}>
                 <ScrollView showsVerticalScrollIndicator={false}>
                     <MyTextComponent style={{ fontSize: 30, margin: 10, color: '#0E6154' }}>Home</MyTextComponent>
-                    {/* Sale */}
+                    {/* Sale
                     <View style={{ backgroundColor: '#47CCB8' }}>
                         <MyTextComponent style={styles.subtitle}>Sale</MyTextComponent>
                         <ScrollView
@@ -53,31 +53,16 @@ export default function Home({ navigation }) {
                             style={styles.carrousel}>
                             <View style={{ flexDirection: 'row' }}>
                                 {saleProducts.map(product => {
-                                    return <DiscountCard name={product.name} price={product.price} oldPrice={product.oldPrice} />
+                                    return <DiscountCard name={product.name} price={product.price} oldPrice={product.oldPrice} key={product.key} />
                                 })}
                             </View>
                         </ScrollView>
-                    </View>
-                    {/* Recommended for you */}
-                    <MyTextComponent style={styles.subtitle}>Recommended for you</MyTextComponent>
-                    <ScrollView
-                        showsHorizontalScrollIndicator={false}
-                        style={styles.carrousel}>
-                        <View style={{ flexDirection: 'row' }}>
+                    </View> */}
+                    <ScrollView>
+                        <View>
                             {products.map(product => {
-                                return <ProductCard name={product.name} price={product.price} />
-                            })}
-                        </View>
-                    </ScrollView>
-                    {/* Trending */}
-                    <MyTextComponent style={styles.subtitle}>Trending</MyTextComponent>
-                    <ScrollView
-                        style={styles.carrousel}
-                        showsHorizontalScrollIndicator={false}
-                    >
-                        <View style={{ flexDirection: 'row' }}>
-                            {products.map(product => {
-                                return <ProductCard name={product.name} price={product.price} />
+                                return (
+                                    <ProductCard style={styles.card} name={product.name} price={product.price} />)
                             })}
                         </View>
                     </ScrollView>
